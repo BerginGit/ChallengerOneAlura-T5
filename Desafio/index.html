@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Decodificador de Texto - Alura Challenges Oracle ONE</title>
+        <link rel="stylesheet" href="/styles/reset.css">
+        <link rel="stylesheet" href="/styles/style.css">
+    </head>
+    <body>
+        <header>
+            <div class="caixa">
+                <h1><img src="imgs\Vectorlogo.png" id="logo"></h1>
+            </div>    
+        </header>
+
+        <main>
+            <form class="mensagens">
+                <div class="caixa1">
+                    <label for="mensagemescrita">Digite seu texto</label>
+                    <textarea cols="70" rows="10" id="mensagemescrita" class="input-padrao"></textarea>
+                </div>
+                <div class="caixa2">
+                    <label for="mensagemtraduzida">Texto traduzido</label>
+                    <textarea cols="70" rows="10" id="mensagemtraduzida" class="input-padrao" ></textarea>
+                </div>  
+            </form>
+
+            <input type="submit" class="botao" value="Criptografar" id="criptografar">
+            <input type="submit" class="botao" value="Descriptografar" id="descriptografar">
+        </main>
+
+        <footer>
+            <p class="copyright">&copy; Desenvolvido por Humberto Camara Marriel</p>
+        </footer>
+        <meta charset="UTF-8">
+
+        <script>
+            function criptografar() {
+                text = document.getElementById('mensagemescrita').value
+                novotext = ""
+                for(var posicao = 0; posicao < text.length; posicao++) {
+                    switch(text[posicao]) {
+                        case "a":
+                            novotext = novotext + "ai"
+                            break;
+                        case "e":
+                            novotext = novotext + "enter"
+                            break;
+                        case "i":
+                            novotext = novotext + "imes"
+                            break;
+                        case "o":
+                            novotext = novotext + "ober"
+                            break;
+                        case "u":
+                            novotext = novotext + "ufat"
+                            break;
+                        default:
+                            novotext = novotext + text[posicao]
+                    }
+                }
+                document.getElementById('mensagemtraduzida').value = novotext
+                document.getElementById('mensagemescrita').value = ""
+            }
+            function descriptografar() {
+                text = document.getElementById('mensagemescrita').value
+                novotext = ""
+                for(var posicao = 0; posicao < text.length; posicao++) {
+                    switch(text[posicao]) {
+                        case "a":
+                            if (text.slice(posicao, posicao+2) == "ai"){
+                                novotext = novotext + "a"
+                                posicao = posicao + 1
+                            }
+                            break;
+                        case "e":
+                        if (text.slice(posicao, posicao+5) == "enter"){
+                                novotext = novotext + "e"
+                                posicao = posicao + 4
+                            }
+                            break;
+                        case "i":
+                            if (text.slice(posicao, posicao+4) == "imes"){
+                                novotext = novotext + "i"
+                                posicao = posicao + 3
+                            }
+                            break;
+                        case "o":
+                            if (text.slice(posicao, posicao+4) == "ober"){
+                                novotext = novotext + "o"
+                                posicao = posicao + 3
+                            }
+                            break;
+                        case "u":
+                            if (text.slice(posicao, posicao+4) == "ufat"){
+                                novotext = novotext + "u"
+                                posicao = posicao + 3
+                            }
+                            break;
+                        default:
+                            novotext = novotext + text[posicao]
+                            ponto = posicao
+                    }
+                }
+                document.getElementById('mensagemtraduzida').value = novotext
+                document.getElementById('mensagemescrita').value = ""
+            }
+
+            document.getElementById("criptografar").onclick = criptografar;
+            document.getElementById("descriptografar").onclick = descriptografar;
+
+        </script>
+    </body>
+</html>
+
